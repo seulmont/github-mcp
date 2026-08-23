@@ -1,4 +1,4 @@
-import com.amit.test.github_mcp;
+package com.amit.test.github_mcp;
 
 import java.util.*;
 import java.util.concurrent.atomic.AtomicLong;
@@ -7,7 +7,8 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-
+import com.amit.test.github_mcp.repository.CustomerDao;
+import com.amit.test.github_mcp.repository.CustomerDaoImpl;
 /**
  * =====================================================================================
  * MainFile.java
@@ -71,6 +72,9 @@ public class MainFile {
         Customer acme = bank.getCustomerService().registerCustomer(
                 "Acme Corporation", addr3, "finance@acme.com", "+1-650-253-0000", CustomerType.BUSINESS);
 
+        CustomerDao customerDao = new CustomerDaoImpl(connection);
+
+        createCustomer(customerDao);
         // ---------------------------------------------------------------
         // Account creation
         // ---------------------------------------------------------------
@@ -2944,6 +2948,18 @@ class ConsoleMenu {
                     (selection - 1 >= 0 && selection - 1 < options.size() ? options.get(selection - 1).getLabel() : "unknown"));
             select(selection);
         }
+    }
+
+    public void createCustomer(CustomerDao customerDao) {
+
+        Customer customer = new Customer(
+                1001L,
+                "John",
+                "Doe",
+                "john.doe@example.com"
+        );
+
+        customerDao.save(customer);
     }
 }
 
