@@ -9,6 +9,8 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import com.amit.test.github_mcp.repository.CustomerDao;
 import com.amit.test.github_mcp.repository.CustomerDaoImpl;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 /**
  * =====================================================================================
  * MainFile.java
@@ -50,6 +52,12 @@ import com.amit.test.github_mcp.repository.CustomerDaoImpl;
  * =====================================================================================
  */
 public class MainFile {
+
+    @Autowired
+    private Dependency1 dependency1;
+
+    @Autowired
+    private Dependency2 dependency2;
 
     public static void main(String[] args) {
         System.out.println("=====================================================");
